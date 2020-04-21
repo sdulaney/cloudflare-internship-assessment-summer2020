@@ -1,6 +1,6 @@
 name = "cloudflare-internship-assessment-summer2020"
 type = "javascript"
-account_id = ""
+account_id = "0a40c6f39b703dff5745234b60b41ecc"
 workers_dev = true
 route = ""
 zone_id = ""

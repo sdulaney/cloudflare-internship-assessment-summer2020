@@ -13,8 +13,5 @@ async function handleRequest(request) {
   .then((data) => {
     return data.variants
   })
-  console.log(variants)
-  return new Response('Hello worker!', {
-    headers: { 'content-type': 'text/plain' },
-  })
+  return fetch(variants[0])
 }

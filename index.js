@@ -54,17 +54,23 @@ async function handleRequest(request) {
   .then((data) => {
     return data.variants
   })
-  let url
-  // For simplicity assume there's only one cookie
-  let cookie = request.headers.get('Cookie') || ''
-  if (cookie.includes('url=https://cfw-takehome.developers.workers.dev/variants/')) {
-    url = cookie.replace('url=', '')
+  let url = ''
+  let cookies = request.headers.get('Cookie') || ''
+  if (cookies != '') {
+    const cookie_arr = cookies.split('; ')
+    cookie_arr.forEach(cookie => {
+      if (cookie.includes('https://cfw-takehome.developers.workers.dev/variants/')) {
+        url = cookie.replace('url=', '')
+      }
+    })
   }
-  else if (Math.random() <= 0.5) {
-    url = variants[0]
-  }
-  else {
-    url = variants[1]
+  if (url == '') {
+    if (Math.random() <= 0.5) {
+      url = variants[0]
+    }
+    else {
+      url = variants[1]
+    }
   }
   let res = await fetch(url)
   res = new HTMLRewriter().on('*', new ElementHandler()).transform(res)

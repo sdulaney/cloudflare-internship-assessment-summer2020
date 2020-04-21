@@ -13,5 +13,10 @@ async function handleRequest(request) {
   .then((data) => {
     return data.variants
   })
-  return fetch(variants[0])
+  if (Math.random() <= 0.5) {
+    return fetch(variants[0])
+  }
+  else {
+    return fetch(variants[1])
+  }
 }

@@ -51,12 +51,19 @@ async function handleRequest(request) {
     return data.variants
   })
   let url
-  if (Math.random() <= 0.5) {
+  // For simplicity assume there's only one cookie
+  let cookie = request.headers.get('Cookie') || ''
+  if (cookie.includes('url=https://cfw-takehome.developers.workers.dev/variants/')) {
+    url = cookie.replace('url=', '')
+  }
+  else if (Math.random() <= 0.5) {
     url = variants[0]
   }
   else {
     url = variants[1]
   }
-  const res = await fetch(url)
-  return new HTMLRewriter().on('*', new ElementHandler()).transform(res)
+  let res = await fetch(url)
+  res = new HTMLRewriter().on('*', new ElementHandler()).transform(res)
+  res.headers.append('Set-Cookie', 'url=' + url + '; Max-Age=2592000;')
+  return res
 }

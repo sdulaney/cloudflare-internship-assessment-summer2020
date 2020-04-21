@@ -15,7 +15,7 @@ class ElementHandler {
     if (element.tagName == 'h1') {
       const id = element.getAttribute('id')
       if (id != null && id == 'title') {
-        element.setInnerContent('Stewart Dulaney')
+        element.prepend('Stewart Dulaney - ')
       }
     }
     if (element.tagName == 'p') {

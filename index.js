@@ -1,5 +1,9 @@
 /**
  * Stewart Dulaney
+ * 
+ * All requirements complete
+ * All extra credit 1, 2, and 3 complete
+ * 
  * Email: sdulaney@ucla.edu
  * LinkedIn: https://www.linkedin.com/in/stewartdulaney
  * GitHub: https://github.com/sdulaney
